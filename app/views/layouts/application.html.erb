@@ -8,16 +8,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
+  </head>
 
   <body>
+    <% if current_user.present?%>
+      <p>こんにちは、<%= current_user.username %>さん</p>
+    <% else %>
+      <p>こんにちは、ゲストさん</p>
+    <% end %>
     <% if flash[:notice] %>
       <p class="notice"><%= notice %></p>
     <% end %>
     <% if flash[:alert] %>
       <p class="alert"><%= alert %></p>
     <% end %>
-  </head>
     <%= yield %>
   </body>
 </html>
